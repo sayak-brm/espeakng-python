@@ -11,8 +11,7 @@ isSpeaking=False
 def say(phrase="hello", voice="en", wpm=120, pitch=80, wait4prev=False):
     global prevproc
     cmd = [
-        "cmd", "/c",
-        "espeak.exe",
+        "espeak",
         "--path=.",
         "-v", voice,
         "-p", pitch,
@@ -29,11 +28,11 @@ def say(phrase="hello", voice="en", wpm=120, pitch=80, wait4prev=False):
         except AttributeError: pass
     else:
         try:
-            subprocess.Popen(['taskkill', '/F', '/PID', str(prevproc.pid)], shell=True)
+            prevproc.terminate()
         except AttributeError: pass
-    prevproc = subprocess.Popen(cmd, shell=True)
+    prevproc = subprocess.Popen(cmd)
 
-class SayThread(Thread):
+class Speaker(Thread):
     def __init__(self, phrase="hello", voice="en", wpm=120, pitch=80, wait4prev=False):
         Thread.__init__(self)
         self.phrase=phrase
@@ -51,7 +50,7 @@ class SayThread(Thread):
             Lock.acquire()
         isSpeaking = True
         Lock.release()
-        say(phrase=self.phrase, voice=self.voice, wpm=self.wpm, pitch=self.pitch, wait4prev=self.wait4prev)
+        self.say(phrase=self.phrase, voice=self.voice, wpm=self.wpm, pitch=self.pitch, wait4prev=self.wait4prev)
         Lock.acquire()
         isSpeaking=False
         Lock.release()
