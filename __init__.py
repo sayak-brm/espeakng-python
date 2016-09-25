@@ -28,8 +28,7 @@ def say(phrase="hello", voice="en", wpm=120, pitch=80, wait4prev=False):
 
 if __name__ == "__main__":
     import time
-    print("DEMO")
     say(wait4prev=True)
-    say(phrase="I am a demo of the say function", wait4prev=True)
+    say("I am a demo of the say function", wait4prev=True)
     time.sleep(1)
-    say(phrase="hola", voice="es")
+    say("hola", voice="es")
