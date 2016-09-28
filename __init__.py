@@ -1,11 +1,16 @@
 import subprocess
+import os
+import platform
 
 prevproc = None
+
+if platform.system() == 'Windows': executable=os.path.dirname(os.path.abspath(__file__))+"/espeak.exe"
+else: executable=os.path.dirname(os.path.abspath(__file__))+"/espeak"
 
 def say(phrase="hello", voice="en", wpm=120, pitch=80, wait4prev=False):
     global prevproc
     cmd = [
-        "espeak",
+        executable,
         "--path=.",
         "-v", voice,
         "-p", pitch,
@@ -24,7 +29,7 @@ def say(phrase="hello", voice="en", wpm=120, pitch=80, wait4prev=False):
         try:
             prevproc.terminate()
         except AttributeError: pass
-    prevproc = subprocess.Popen(cmd)
+    prevproc = subprocess.Popen(cmd, executable=executable, cwd=os.path.dirname(os.path.abspath(__file__)))
 
 if __name__ == "__main__":
     import time
