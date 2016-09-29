@@ -7,4 +7,4 @@ python:
 install:
 #  - pip install .
   - pip install -r requirements.txt
-script: __init__.py
+script: ./__init__.py
