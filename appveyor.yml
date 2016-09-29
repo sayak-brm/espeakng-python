@@ -18,9 +18,9 @@ environment:
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
 
-install:
-  - "%PYTHON%/Scripts/pip.exe install nose"
-  - "%PYTHON%/Scripts/pip.exe install coverage"
+#install:
+#  - "%PYTHON%/Scripts/pip.exe install nose"
+#  - "%PYTHON%/Scripts/pip.exe install coverage"
 
 test_script:
-  - "%PYTHON%\\python.exe __init__.py"
+  - "%PYTHON%\\python.exe test.py"
