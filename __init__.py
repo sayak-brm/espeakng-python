@@ -6,7 +6,7 @@ import platform
 prevproc = None
 
 if platform.system() == 'Windows': executable=os.path.dirname(os.path.abspath(__file__))+"/espeak.exe"
-else: executable=os.path.dirname(os.path.abspath(__file__))+"/espeak"
+else: executable="espeak"
 
 def say(phrase="hello", voice="en", wpm=120, pitch=80, wait4prev=False):
     global prevproc
