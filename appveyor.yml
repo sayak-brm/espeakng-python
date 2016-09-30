@@ -33,5 +33,5 @@ test_script:
 after_test:
   - coverage run test.py
   - coverage xml -o coverage.xml test.py
-  - codeclimate-test-reporter CODECLIMATE_REPO_TOKEN=%CODECLIMATE_REPO_TOKEN%
+  - codeclimate-test-reporter
   - "%PYTHON%\\python.exe -m codecov.__init__ -f coverage.xml"
