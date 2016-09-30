@@ -4,13 +4,19 @@ python:
   - "3.3"
   - "3.4"
   - "3.5"
+
 addons:
   code_climate:
     repo_token: 4eb642979a05361bf14de2948be4075a7bca4f5013954905e1536d1473c13223
+
 install:
-   - sudo chmod 755 espeak4py/espeak
-   - ls -l espeak4py
-   - ls -l /home/travis/build/sayak-brm/espeak4py/espeak4py
+  - sudo chmod 755 espeak4py/espeak
+  - ls -l espeak4py
+  - ls -l /home/travis/build/sayak-brm/espeak4py/espeak4py
 #  - pip install .
 #  - pip install -r requirements.txt
+
 script: python3 test.py
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
