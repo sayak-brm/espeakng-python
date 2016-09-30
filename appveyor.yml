@@ -3,8 +3,6 @@ version: 0.2.{build}
 branches:
   except:
   - gh-pages
-build:
-  verbosity: minimal
 
 environment:
   matrix:
