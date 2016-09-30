@@ -7,9 +7,13 @@ class Speaker:
     """
     Speaker class for differentiating different speech properties.
     """
-    def setVoice(self, voice): self.voice = voice
-    def setWPM(self, wpm): self.wpm = wpm
-    def setPitch(self, pitch): self.pitch = pitch
+    
+    def setVoice(self, voice):
+        self.voice = voice
+    def setWPM(self, wpm):
+        self.wpm = wpm
+    def setPitch(self, pitch):
+        self.pitch = pitch
 
     def setProperties(self, voice="en", wpm=120, pitch=80):
         self.setVoice(voice)
