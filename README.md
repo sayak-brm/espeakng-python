@@ -46,13 +46,13 @@ myHighPitchedSpeaker.say('I am a demo of the say function')
 
 or
 
-```
+```python
 mySpeaker.setPitch(120)
 ```
 
 or
 
-```
+```python
 mySpeaker.pitch = 120
 ```
 
@@ -70,13 +70,13 @@ myFastSpeaker.say('I am a demo of the say function')
 
 or
 
-```
+```python
 mySpeaker.setWPM(140)
 ```
 
 or
 
-```
+```python
 mySpeaker.wpm = 140
 ```
 
@@ -95,13 +95,13 @@ mySpanishSpeaker.say('Hola. Como estas?')
 
 or
 
-```
+```python
 mySpeaker.setVoice('es')
 ```
 
 or
 
-```
+```python
 mySpeaker.voice = 'es'
 ```
 
@@ -109,13 +109,13 @@ mySpeaker.voice = 'es'
 
 Change all properties at once by:
 
-```
+```python
 mySpeaker.setProperties('es', 140, 120)
 ```
 
 or
 
-```
+```python
 mySpeaker.setProperties(voice='es', wpm=140, pitch=120)
 ```
 
@@ -123,6 +123,6 @@ mySpeaker.setProperties(voice='es', wpm=140, pitch=120)
 
 Reset all changed properties at once by:
 
-```
+```python
 mySpeaker.setProperties()
 ```

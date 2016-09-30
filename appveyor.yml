@@ -24,7 +24,7 @@ init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
 
 install:
-  - "pip install codeclimate-test-reporter"
+  - "pip install -r build_requirements.txt"
 
 test_script:
   - "%PYTHON%\\python.exe test.py"
