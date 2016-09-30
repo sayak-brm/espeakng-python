@@ -24,7 +24,6 @@ init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
 
 install:
-  - "pip install codecov"
   - "pip install codeclimate-test-reporter"
 
 test_script:
@@ -34,4 +33,3 @@ after_test:
   - coverage run test.py
   - coverage xml -o coverage.xml test.py
   - codeclimate-test-reporter
-  - "%PYTHON%\\python.exe -m codecov.__init__ -f coverage.xml"
