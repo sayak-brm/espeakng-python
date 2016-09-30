@@ -3,9 +3,13 @@ import espeak4py
 import time
 
 print('Testing espeak4py\n')
-print('Testing wait4prev')
 
 mySpeaker = espeak4py.Speaker()
+
+print('Increasing Coverage')
+mySpeaker.say('', wait4prev=True)
+
+print('Testing wait4prev')
 
 mySpeaker.say('Hello, World!')
 time.sleep(1)

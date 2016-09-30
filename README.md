@@ -15,7 +15,7 @@ mySpeaker = espeak4py.Speaker()
 
 And then to speak:
 
-```
+```python
 mySpeaker.say('Hello, World!')
 ```
 
