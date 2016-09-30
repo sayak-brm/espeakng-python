@@ -4,6 +4,9 @@ import os
 import platform
 
 class Speaker:
+    """
+    Speaker class for differentiating different speech properties.
+    """
     def __init__(self, voice="en", wpm=120, pitch=80):
         self.prevproc = None
         self.voice = voice
@@ -12,7 +15,7 @@ class Speaker:
         if platform.system() == 'Windows': self.executable = os.path.dirname(os.path.abspath(__file__)) + "/espeak.exe"
         else: self.executable = os.path.dirname(os.path.abspath(__file__)) + "/espeak"
         
-    def generateCmd(self, phrase):
+    def generateCommand(self, phrase):
         cmd = [
             self.executable,
             "--path=.",
@@ -25,7 +28,7 @@ class Speaker:
         return cmd
 
     def say(self, phrase, wait4prev=False):
-        cmd=self.generateCmd(phrase)
+        cmd=self.generateCommand(phrase)
         if wait4prev:
             try: self.prevproc.wait()
             except AttributeError: pass
