@@ -8,7 +8,7 @@ addons:
   code_climate:
     repo_token: 4eb642979a05361bf14de2948be4075a7bca4f5013954905e1536d1473c13223
 install:
-   - chmod 755 espeak
+   - sudo chmod 755 espeak
 #  - pip install .
 #  - pip install -r requirements.txt
-script: sudo python3 test.py
+script: python3 test.py
