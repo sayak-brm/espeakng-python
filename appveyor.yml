@@ -21,9 +21,10 @@ environment:
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
+  - pip install --user codecov
 
 test_script:
   - "%PYTHON%\\python.exe test.py"
 
 after_test:
-  - bash <(curl -s https://codecov.io/bash)
+  - codecov
