@@ -66,5 +66,5 @@ Change it by:
 ```python
 mySpanishSpeaker = espeak4py.Speaker(voice='es')
 
-mySpanishSpeaker.say('Hola. C0mo estas?')
+mySpanishSpeaker.say('Hola. Como estas?')
 ```
