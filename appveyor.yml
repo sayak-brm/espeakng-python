@@ -20,14 +20,14 @@ environment:
 
 
 init:
-  - set PATH=%PYTHON%\scripts;%PATH%
+  - "set PATH=%PYTHON%\scripts;%PATH%"
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
 
 install:
-  - pip install --user codecov
+  - "pip install codecov"
 
 test_script:
   - "%PYTHON%\\python.exe test.py"
 
 after_test:
-  - %PYTHON%\\python.exe -m codecov
+  - "%PYTHON%\\python.exe -m codecov"
