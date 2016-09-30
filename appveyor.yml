@@ -1,4 +1,10 @@
 build: false
+version: 0.2.{build}
+branches:
+  except:
+  - gh-pages
+build:
+  verbosity: minimal
 
 environment:
   matrix:
@@ -17,10 +23,6 @@ environment:
 
 init:
   - "ECHO %PYTHON% %PYTHON_VERSION% %PYTHON_ARCH%"
-
-#install:
-#  - "%PYTHON%/Scripts/pip.exe install nose"
-#  - "%PYTHON%/Scripts/pip.exe install coverage"
 
 test_script:
   - "%PYTHON%\\python.exe test.py"
