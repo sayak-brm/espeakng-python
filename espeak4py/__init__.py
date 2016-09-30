@@ -7,11 +7,13 @@ class Speaker:
     """
     Speaker class for differentiating different speech properties.
     """
-    
+
     def setVoice(self, voice):
         self.voice = voice
+
     def setWPM(self, wpm):
         self.wpm = wpm
+
     def setPitch(self, pitch):
         self.pitch = pitch
 
@@ -19,13 +21,13 @@ class Speaker:
         self.setVoice(voice)
         self.setWPM(wpm)
         self.setPitch(pitch)
-    
+
     def __init__(self, voice="en", wpm=120, pitch=80):
         self.prevproc = None
         self.setProperties(voice, wpm, pitch)
         if platform.system() == 'Windows': self.executable = os.path.dirname(os.path.abspath(__file__)) + "/espeak.exe"
         else: self.executable = os.path.dirname(os.path.abspath(__file__)) + "/espeak"
-        
+
     def generateCommand(self, phrase):
         cmd = [
             self.executable,
