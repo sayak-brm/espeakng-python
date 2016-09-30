@@ -12,4 +12,4 @@ install:
    - ls -l espeak4py
 #  - pip install .
 #  - pip install -r requirements.txt
-script: python3 test.py
+script: sudo python3 test.py
