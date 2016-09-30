@@ -30,4 +30,5 @@ test_script:
   - "%PYTHON%\\python.exe test.py"
 
 after_test:
-  - "%PYTHON%\\python.exe -m codecov.__init__"
+  - coverage xml -o coverage.xml test.py
+  - "%PYTHON%\\python.exe -m codecov.__init__ -f coverage.xml"
