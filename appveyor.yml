@@ -30,4 +30,4 @@ test_script:
   - "%PYTHON%\\python.exe test.py"
 
 after_test:
-  - "%PYTHON%\\python.exe -m codecov"
+  - "%PYTHON%\\python.exe -m codecov.__init__"
