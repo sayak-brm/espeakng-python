@@ -19,19 +19,19 @@ time.sleep(3)
 mySpeaker.say('Hello, World!')
 time.sleep(1)
 mySpeaker.say('Not Interrupted.', wait4prev=True)
-time.sleep(5)
+time.sleep(3)
 
 print('Testing pitch')
 
 myHighPitchedSpeaker = espeak4py.Speaker(pitch=120)
 myHighPitchedSpeaker.say('I am a demo of the say function')
-time.sleep(5)
+time.sleep(4)
 
 print('Testing wpm')
 
 myFastSpeaker = espeak4py.Speaker(wpm=140)
 myFastSpeaker.say('I am a demo of the say function')
-time.sleep(5)
+time.sleep(4)
 
 print('Testing voice')
 
