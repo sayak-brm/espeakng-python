@@ -22,6 +22,7 @@ mySpeaker.say('Hello, World!')
 
 The above will stop interrupt the `Speaker` (`mySpeaker` in this case).
 
+###### Note: A `Speaker` object can only interrupt itself.
 
 Code to wait for any ongoing speech to complete:
 
