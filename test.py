@@ -23,7 +23,6 @@ print('Testing espeak4py\n')
 
 mySpeaker = espeak4py.Speaker()
 
-print('Increasing Coverage')
 mySpeaker.say('', wait4prev=True)
 
 print('Testing wait4prev')

@@ -7,8 +7,6 @@ python:
 
 install:
   - sudo chmod 755 espeak4py/espeak
-  - ls -l espeak4py
-  - ls -l /home/travis/build/sayak-brm/espeak4py/espeak4py
   - pip install -r build_requirements.txt
   - sed -i 's/\r//' espeak4py/__init__.py
 
