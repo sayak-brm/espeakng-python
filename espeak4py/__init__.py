@@ -42,8 +42,7 @@ class Speaker:
     def __init__(self, voice="en", wpm=120, pitch=80):
         self.prevproc = None
         self.setProperties(voice, wpm, pitch)
-        if platform.system() == 'Windows': self.executable = os.path.dirname(os.path.abspath(__file__)) + "/espeak.exe"
-        else: self.executable = os.path.dirname(os.path.abspath(__file__)) + "/espeak"
+        self.executable = os.path.dirname(os.path.abspath(__file__)) + "/espeak"
 
     def generateCommand(self, phrase):
         cmd = [
