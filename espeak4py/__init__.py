@@ -16,52 +16,41 @@
 ##    You should have received a copy of the GNU General Public License
 ##    along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-import subprocess
 import os
 import platform
+import subprocess
+
 
 class Speaker:
     """
     Speaker class for differentiating different speech properties.
     """
-
-    def setVoice(self, voice):
+    def __init__(self, voice='en', wpm=120, pitch=80):
+        self.prevproc = None
         self.voice = voice
-
-    def setWPM(self, wpm):
         self.wpm = wpm
-
-    def setPitch(self, pitch):
         self.pitch = pitch
 
-    def setProperties(self, voice="en", wpm=120, pitch=80):
-        self.setVoice(voice)
-        self.setWPM(wpm)
-        self.setPitch(pitch)
+        executable = 'espeak.exe' if platform.system() == 'Windows' else 'espeak'
+        self.executable = os.path.join(os.path.dirname(os.path.abspath(__file__)), executable)
 
-    def __init__(self, voice="en", wpm=120, pitch=80):
-        self.prevproc = None
-        self.setProperties(voice, wpm, pitch)
-        self.executable = os.path.dirname(os.path.abspath(__file__)) + "/espeak.exe" if platform.system() == 'Windows' else os.path.dirname(os.path.abspath(__file__)) + "/espeak"
-
-    def generateCommand(self, phrase):
+    def generate_command(self, phrase):
         cmd = [
             self.executable,
-            "--path=.",
-            "-v", self.voice,
-            "-p", self.pitch,
-            "-s", self.wpm,
+            '--path=.',
+            '-v', self.voice,
+            '-p', self.pitch,
+            '-s', self.wpm,
             phrase
         ]
         cmd = [str(x) for x in cmd]
         return cmd
 
     def say(self, phrase, wait4prev=False):
-        cmd=self.generateCommand(phrase)
-        if wait4prev:
-            try: self.prevproc.wait()
-            except AttributeError: pass
-        else:
-            try: self.prevproc.terminate()
-            except AttributeError: pass
-        self.prevproc = subprocess.Popen(cmd, executable=self.executable, cwd=os.path.dirname(os.path.abspath(__file__)))
+        cmd = self.generate_command(phrase)
+        if self.prevproc:
+            if wait4prev:
+                self.prevproc.wait()
+            else:
+                self.prevproc.terminate()
+        self.prevproc = subprocess.Popen(cmd, cwd=os.path.dirname(os.path.abspath(__file__)))

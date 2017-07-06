@@ -43,20 +43,6 @@ By default the pitch is set at 80.
 Change it by:
 
 ```python
-myHighPitchedSpeaker = espeak4py.Speaker(pitch=120)
-
-myHighPitchedSpeaker.say('I am a demo of the say function')
-```
-
-or
-
-```python
-mySpeaker.setPitch(120)
-```
-
-or
-
-```python
 mySpeaker.pitch = 120
 ```
 
@@ -65,20 +51,6 @@ mySpeaker.pitch = 120
 By default WPM is set at 120.
 
 Change it by:
-
-```python
-myFastSpeaker = espeak4py.Speaker(wpm=140)
-
-myFastSpeaker.say('I am a demo of the say function')
-```
-
-or
-
-```python
-mySpeaker.setWPM(140)
-```
-
-or
 
 ```python
 mySpeaker.wpm = 140
@@ -92,41 +64,5 @@ Uses voice file of set name from `espeak-data/voices`.
 Change it by:
 
 ```python
-mySpanishSpeaker = espeak4py.Speaker(voice='es')
-
-mySpanishSpeaker.say('Hola. Como estas?')
-```
-
-or
-
-```python
-mySpeaker.setVoice('es')
-```
-
-or
-
-```python
 mySpeaker.voice = 'es'
-```
-
-###### All at Once:
-
-Change all properties at once by:
-
-```python
-mySpeaker.setProperties('es', 140, 120)
-```
-
-or
-
-```python
-mySpeaker.setProperties(voice='es', wpm=140, pitch=120)
-```
-
-###### Reset Properties:
-
-Reset all changed properties at once by:
-
-```python
-mySpeaker.setProperties()
 ```
