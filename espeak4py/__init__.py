@@ -25,32 +25,54 @@ class Speaker:
     """
     Speaker class for differentiating different speech properties.
     """
-    def __init__(self, voice='en', wpm=120, pitch=80):
+    def __init__(self, voice='en', wpm=170, pitch=50, amplitude=100, wordgap=0):
         self.prevproc = None
         self.voice = voice
-        self.wpm = wpm
-        self.pitch = pitch
+        self.wpm = wpm             # 80-500 (170)
+        self.pitch = pitch         # 0-99  (50)
+        self.amplitude = amplitude # 0-200 (100)
+        self.wordgap = wordgap     # The (additional) length of the pause, in units of 10 mS (at the default speed of 170 wpm)
 
         executable = 'espeak.exe' if platform.system() == 'Windows' else 'espeak'
         self.executable = os.path.join(os.path.dirname(os.path.abspath(__file__)), executable)
 
-    def generate_command(self, phrase):
+    def generate_command(self, phrase, **kwargs):
         cmd = [
             self.executable,
-            '--path=.',
-            '-v', self.voice,
-            '-p', self.pitch,
-            '-s', self.wpm,
+            '-v', kwargs.get('voice', self.voice),
+            '-s', kwargs.get('wpm', self.wpm),
+            '-p', kwargs.get('pitch', self.pitch),
+            '-a', kwargs.get('amplitude', self.amplitude),
+            '-g', kwargs.get('wordgap', self.wordgap),
             phrase
         ]
         cmd = [str(x) for x in cmd]
         return cmd
 
-    def say(self, phrase, wait4prev=False):
-        cmd = self.generate_command(phrase)
+    def say(self, phrase, wait4prev=False, **kwargs):
+        cmd = self.generate_command(phrase, **kwargs)
         if self.prevproc:
             if wait4prev:
                 self.prevproc.wait()
             else:
                 self.prevproc.terminate()
-        self.prevproc = subprocess.Popen(cmd, cwd=os.path.dirname(os.path.abspath(__file__)))
+        if platform.system() == 'Windows':
+            si = subprocess.STARTUPINFO()
+            si.dwFlags |= subprocess.SW_HIDE | subprocess.STARTF_USESHOWWINDOW
+            self.prevproc = subprocess.Popen(cmd, cwd=os.path.dirname(os.path.abspath(__file__)), startupinfo=si)
+        else:
+            self.prevproc = subprocess.Popen(cmd, cwd=os.path.dirname(os.path.abspath(__file__)))
+
+    def is_talking(self):
+        if self.prevproc and self.prevproc.poll() == None:
+            return True
+        else:
+            return False
+
+    def wait(self):
+        if self.prevproc:
+            self.prevproc.wait()
+
+    def quiet(self):
+        if self.prevproc:
+            self.prevproc.terminate()

@@ -47,6 +47,9 @@ print('Testing wpm')
 
 myFastSpeaker = espeak4py.Speaker(wpm=140)
 myFastSpeaker.say('I am a demo of the say function')
+
+print('Testing parameter overrides with say')
+myFastSpeaker.say('I am a demo of the say function', wait4prev=True, wpm=240)
 time.sleep(4)
 
 print('Testing voice')
