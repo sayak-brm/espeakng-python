@@ -1,4 +1,4 @@
-#! python3
+#! /usr/bin/python3
 
 ##    An espeak TTS binding for Python3.
 ##    Copyright (C) 2016 Sayak Brahmachari.
