@@ -1,7 +1,7 @@
 ## espeak TTS Bindings for Python3
 
-###### Copyright 2016-2020 [Sayak Brahmachari](https://sayak-brm.github.io/). Licenced under [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
-[[![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg)](https://www.python.org/download/releases/3.0/) [![espeak Version](https://img.shields.io/badge/espeak-v1.48.04-brightgreen.svg)](http://espeak.sourceforge.net/) ![Linux](https://img.shields.io/badge/-Linux-brightgreen.svg) ![Windows](https://img.shields.io/badge/-Windows-orange.svg)
+###### Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
+[![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg)](https://www.python.org/download/releases/3.0/) [![espeak Version](https://img.shields.io/badge/espeak-v1.48.04-brightgreen.svg)](http://espeak.sourceforge.net/) ![Linux](https://img.shields.io/badge/-Linux-brightgreen.svg) ![Windows](https://img.shields.io/badge/-Windows-orange.svg)
 
 ### Usage:
 
