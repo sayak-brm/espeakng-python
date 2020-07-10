@@ -1,9 +1,10 @@
 ## espeak TTS Bindings for Python3
 
-###### Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
+###### Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under [GNU GPLv3](https://opensource.org/licenses/GPL-3.0)
+
 [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg)](https://www.python.org/download/releases/3.0/) [![espeak Version](https://img.shields.io/badge/espeak-v1.48.04-brightgreen.svg)](http://espeak.sourceforge.net/) ![Linux](https://img.shields.io/badge/-Linux-brightgreen.svg) ![Windows](https://img.shields.io/badge/-Windows-orange.svg)
 
-### Usage:
+### Usage
 
 First, we have to initialize a `Speaker`.
 
@@ -31,7 +32,7 @@ mySpeaker.say('I am a demo of the say() function.', wait4prev=True)
 
 ---
 
-#### Changing speech properties:
+#### Changing speech properties
 
 ###### Pitch:
 
@@ -43,7 +44,7 @@ Change it by:
 mySpeaker.pitch = 120
 ```
 
-###### Words per Minute (WPM):
+###### Words per Minute (WPM)
 
 By default WPM is set at 120.
 
@@ -53,7 +54,7 @@ Change it by:
 mySpeaker.wpm = 140
 ```
 
-###### Voice:
+###### Voice
 
 By default the voice is set to 'en'.
 Uses voice file of set name from `espeak-data/voices`.
