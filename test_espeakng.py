@@ -1,11 +1,11 @@
 #! /usr/bin/python3
-# An espeak TTS binding for Python3.
-# Copyright (C) 2016 Sayak Brahmachari.
+
+# An eSpeak NG TTS binding for Python3.
+# Copyright (C) 2016-2020 Sayak Brahmachari.
 ##
 # This program is free software: you can redistribute it and/or modify
-# it under the terms of the GNU General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
+# it under the terms of the GNU General Public License Version 3 as published by
+# the Free Software Foundation.
 ##
 # This program is distributed in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY; without even the implied warranty of
