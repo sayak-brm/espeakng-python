@@ -40,7 +40,7 @@ class Speaker:
         self.wordgap =   kwargs.get('wordgap', 0)       # The (additional) length of the pause,
                                                         # in units of 10 mS (at the default speed of 170 wpm)
 
-        self.executable = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'speak-ng')
+        self.executable = 'espeak-ng'
 
     @staticmethod
     def validate_parameters(kwargs):
