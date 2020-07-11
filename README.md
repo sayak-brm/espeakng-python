@@ -5,7 +5,7 @@ Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under
 
 [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg)](https://www.python.org/download/releases/3.0/)
 ![Linux](https://img.shields.io/badge/-Linux-brightgreen.svg)
-![Windows](https://img.shields.io/badge/-Windows-orange.svg)
+![Windows](https://img.shields.io/badge/-Windows-brightgreen.svg)
 
 ## Usage
 
