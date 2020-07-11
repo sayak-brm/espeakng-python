@@ -1,44 +1,49 @@
-##    An espeak TTS binding for Python3.
-##    Copyright (C) 2016-2020 Sayak Brahmachari.
+# An espeak TTS binding for Python3.
+# Copyright (C) 2016-2020 Sayak Brahmachari.
 ##
-##    This program is free software: you can redistribute it and/or modify
-##    it under the terms of the GNU General Public License as published by
-##    the Free Software Foundation, either version 3 of the License, or
-##    (at your option) any later version.
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
 ##
-##    This program is distributed in the hope that it will be useful,
-##    but WITHOUT ANY WARRANTY; without even the implied warranty of
-##    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-##    GNU General Public License for more details.
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
 ##
-##    You should have received a copy of the GNU General Public License
-##    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 import os
 import platform
 import subprocess
 
+
 class SpeechError(Exception):
     pass
 
+
 class SpeechParameterError(SpeechError):
     def __init__(self, param, val, limits):
-        super().__init__(f"Parameter {param} is out of range: {val} -> ({limits[0]}-{limits[1]}).")
+        super().__init__(
+            f"Parameter {param} is out of range: {val} -> ({limits[0]}-{limits[1]}).")
 
 
 class Speaker:
     """
     Speaker class for differentiating different speech properties.
     """
+
     def __init__(self, voice='en', **kwargs):
         self.prevproc = None
         Speaker.validate_parameters(kwargs)
-        self.voice =     kwargs.get('voice', 'en')
-        self.wpm =       kwargs.get('wpm', 175)         # 80-500 (175)
-        self.pitch =     kwargs.get('pitch', 50)        # 0-99  (50)
+        self.voice = kwargs.get('voice', 'en')
+        self.wpm = kwargs.get('wpm', 175)         # 80-500 (175)
+        self.pitch = kwargs.get('pitch', 50)        # 0-99  (50)
         self.amplitude = kwargs.get('amplitude', 100)   # 0-200 (100)
-        self.wordgap =   kwargs.get('wordgap', 0)       # The (additional) length of the pause,
-                                                        # in units of 10 mS (at the default speed of 170 wpm)
+        # The (additional) length of the pause,
+        self.wordgap = kwargs.get('wordgap', 0)
+        # in units of 10 mS (at the default speed of 170 wpm)
 
         self.executable = 'espeak-ng'
 
@@ -79,9 +84,11 @@ class Speaker:
         if platform.system() == 'Windows':
             si = subprocess.STARTUPINFO()
             si.dwFlags |= subprocess.SW_HIDE | subprocess.STARTF_USESHOWWINDOW
-            self.prevproc = subprocess.Popen(cmd, cwd=os.path.dirname(os.path.abspath(__file__)), startupinfo=si)
+            self.prevproc = subprocess.Popen(cmd, cwd=os.path.dirname(
+                os.path.abspath(__file__)), startupinfo=si)
         else:
-            self.prevproc = subprocess.Popen(cmd, cwd=os.path.dirname(os.path.abspath(__file__)))
+            self.prevproc = subprocess.Popen(
+                cmd, cwd=os.path.dirname(os.path.abspath(__file__)))
 
     def is_talking(self):
         if self.prevproc and self.prevproc.poll() == None:
