@@ -79,8 +79,7 @@ mySpeaker.wpm = 140
 
 #### Voice
 
-By default the voice is set to 'en'. Uses voice file of set name from
-`espeak-data/voices`.
+By default the voice is set to 'en'. The complete list of supported voices can be found [here](https://github.com/espeak-ng/espeak-ng/blob/master/docs/languages.md).
 
 Change it by:
 
