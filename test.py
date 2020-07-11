@@ -19,42 +19,42 @@
 import espeakng
 import time
 
-print('Testing espeak4py\n')
+print("Testing espeak4py\n")
 
 mySpeaker = espeakng.Speaker()
 
-mySpeaker.say('', wait4prev=True)
+mySpeaker.say("", wait4prev=True)
 
-print('Testing wait4prev')
+print("Testing wait4prev")
 
-mySpeaker.say('Hello, World!')
+mySpeaker.say("Hello, World!")
 time.sleep(1)
-mySpeaker.say('Interrupted!')
+mySpeaker.say("Interrupted!")
 time.sleep(3)
 
-mySpeaker.say('Hello, World!')
+mySpeaker.say("Hello, World!")
 time.sleep(1)
-mySpeaker.say('Not Interrupted.', wait4prev=True)
+mySpeaker.say("Not Interrupted.", wait4prev=True)
 time.sleep(3)
 
-print('Testing pitch')
+print("Testing pitch")
 
 myHighPitchedSpeaker = espeakng.Speaker(pitch=99)
-myHighPitchedSpeaker.say('I am a demo of the say function')
+myHighPitchedSpeaker.say("I am a demo of the say function")
 time.sleep(4)
 
-print('Testing wpm')
+print("Testing wpm")
 
 myFastSpeaker = espeakng.Speaker(wpm=140)
-myFastSpeaker.say('I am a demo of the say function')
+myFastSpeaker.say("I am a demo of the say function")
 
-print('Testing parameter overrides with say')
-myFastSpeaker.say('I am a demo of the say function', wait4prev=True, wpm=240)
+print("Testing parameter overrides with say")
+myFastSpeaker.say("I am a demo of the say function", wait4prev=True, wpm=240)
 time.sleep(4)
 
-print('Testing voice')
+print("Testing voice")
 
-mySpanishSpeaker = espeakng.Speaker(voice='es')
-mySpanishSpeaker.say('Hola. Como estas?')
+mySpanishSpeaker = espeakng.Speaker(voice="es")
+mySpanishSpeaker.say("Hola. Como estas?")
 
-print('Testing Completed.')
+print("Testing Completed.")
