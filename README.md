@@ -6,6 +6,7 @@ Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under
 [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg)](https://www.python.org/download/releases/3.0/)
 ![Linux](https://img.shields.io/badge/-Linux-brightgreen.svg)
 ![Windows](https://img.shields.io/badge/-Windows-brightgreen.svg)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsayak-brm%2Fespeakng-python.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsayak-brm%2Fespeakng-python?ref=badge_shield)
 
 ## Requirements
 
@@ -86,3 +87,7 @@ Change it by:
 ```python
 mySpeaker.voice = 'es'
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsayak-brm%2Fespeakng-python.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsayak-brm%2Fespeakng-python?ref=badge_large)
