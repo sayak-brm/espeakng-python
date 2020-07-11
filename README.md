@@ -1,4 +1,4 @@
-## espeak TTS Bindings for Python3
+# eSpeak NG TTS Bindings for Python3
 
 Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
 
@@ -9,9 +9,9 @@ Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under [GNU GPLv3](h
 First, we have to initialize a `Speaker`.
 
 ```python
-import espeak4py
+import espeakng
 
-mySpeaker = espeak4py.Speaker()
+mySpeaker = espeakng.Speaker()
 ```
 
 And then use the `Speaker.say()` method to speak:
@@ -32,7 +32,7 @@ mySpeaker.say('I am a demo of the say() method.', wait4prev=True)
 
 ### Changing speech properties
 
-#### Pitch:
+#### Pitch
 
 By default the pitch is set at 80.
 

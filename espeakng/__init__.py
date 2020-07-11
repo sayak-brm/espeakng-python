@@ -1,5 +1,5 @@
 ##    An espeak TTS binding for Python3.
-##    Copyright (C) 2016 Sayak Brahmachari.
+##    Copyright (C) 2016-2020 Sayak Brahmachari.
 ##
 ##    This program is free software: you can redistribute it and/or modify
 ##    it under the terms of the GNU General Public License as published by
@@ -18,23 +18,45 @@ import os
 import platform
 import subprocess
 
+class SpeechError(Exception):
+    pass
+
+class SpeechParameterError(SpeechError):
+    def __init__(self, param, val, limits):
+        super().__init__(f"Parameter {param} is out of range: {val} -> ({limits[0]}-{limits[1]}).")
+
 
 class Speaker:
     """
     Speaker class for differentiating different speech properties.
     """
-    def __init__(self, voice='en', wpm=170, pitch=50, amplitude=100, wordgap=0):
+    def __init__(self, voice='en', **kwargs):
         self.prevproc = None
-        self.voice = voice
-        self.wpm = wpm             # 80-500 (170)
-        self.pitch = pitch         # 0-99  (50)
-        self.amplitude = amplitude # 0-200 (100)
-        self.wordgap = wordgap     # The (additional) length of the pause, in units of 10 mS (at the default speed of 170 wpm)
+        Speaker.validate_parameters(kwargs)
+        self.voice =     kwargs.get('voice', 'en')
+        self.wpm =       kwargs.get('wpm', 175)         # 80-500 (175)
+        self.pitch =     kwargs.get('pitch', 50)        # 0-99  (50)
+        self.amplitude = kwargs.get('amplitude', 100)   # 0-200 (100)
+        self.wordgap =   kwargs.get('wordgap', 0)       # The (additional) length of the pause,
+                                                        # in units of 10 mS (at the default speed of 170 wpm)
 
-        executable = 'espeak.exe' if platform.system() == 'Windows' else 'espeak'
-        self.executable = os.path.join(os.path.dirname(os.path.abspath(__file__)), executable)
+        self.executable = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'speak-ng')
+
+    @staticmethod
+    def validate_parameters(kwargs):
+        limits = {
+            'wpm': (80, 500),
+            'pitch': (0, 99),
+            'amplitude': (0, 200),
+            'wordgap': (0, None)
+        }
+
+        for param in [key for key in limits.keys() if key in kwargs.keys()]:
+            if kwargs[param] < limits[param][0] or limits[param][1] is not None and kwargs[param] > limits[param][1]:
+                raise SpeechParameterError(param, kwargs[param], limits[param])
 
     def generate_command(self, phrase, **kwargs):
+        Speaker.validate_parameters(kwargs)
         cmd = [
             self.executable,
             '-v', kwargs.get('voice', self.voice),
