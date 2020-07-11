@@ -57,11 +57,9 @@ class Speaker:
         }
 
         for param in [key for key in limits.keys() if key in kwargs.keys()]:
-            if (
-                kwargs[param] < limits[param][0]
-                or limits[param][1] is not None
-                and kwargs[param] > limits[param][1]
-            ):
+            if (kwargs[param] < limits[param][0]
+                    or limits[param][1] is not None
+                    and kwargs[param] > limits[param][1]):
                 raise SpeechParameterError(param, kwargs[param], limits[param])
 
     def generate_command(self, phrase, **kwargs):
@@ -93,13 +91,14 @@ class Speaker:
         if platform.system() == "Windows":
             si = subprocess.STARTUPINFO()
             si.dwFlags |= subprocess.SW_HIDE | subprocess.STARTF_USESHOWWINDOW
-            self.prevproc = subprocess.Popen(
-                cmd, cwd=os.path.dirname(os.path.abspath(__file__)), startupinfo=si
-            )
+            self.prevproc = subprocess.Popen(cmd,
+                                             cwd=os.path.dirname(
+                                                 os.path.abspath(__file__)),
+                                             startupinfo=si)
         else:
-            self.prevproc = subprocess.Popen(
-                cmd, cwd=os.path.dirname(os.path.abspath(__file__))
-            )
+            self.prevproc = subprocess.Popen(cmd,
+                                             cwd=os.path.dirname(
+                                                 os.path.abspath(__file__)))
 
     def is_talking(self):
         if self.prevproc and self.prevproc.poll() == None:
