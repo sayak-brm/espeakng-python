@@ -25,7 +25,9 @@ class SpeechError(Exception):
 class SpeechParameterError(SpeechError):
     def __init__(self, param, val, limits):
         super().__init__(
-            f"Parameter {param} is out of range: {val} -> ({limits[0]}-{limits[1]})."
+            "Parameter {} is out of range: {} -> ({}-{}).".format(
+                param, val, limits[0], limits[1]
+            )
         )
 
 
