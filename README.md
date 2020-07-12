@@ -35,6 +35,12 @@ for more information.
 
 ## Installation
 
+## PyPi
+
+```
+pip install espeakng
+```
+
 ### GitHub Releases
 
 You can download the latest release for this library [here](https://github.com/sayak-brm/espeakng-python/releases/latest).
