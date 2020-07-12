@@ -13,7 +13,7 @@ You need to have eSpeak NG installed in your system and added to the path.
 
 ### Windows
 
-The latest installers for eSpeak NG can be found [here](https://github.com/espeak-ng/espeak-ng/releases).
+The latest installers for eSpeak NG can be found [here](https://github.com/espeak-ng/espeak-ng/releases/latest).
 
 The installed executable may need to be added to the system path. ([See here](https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/))
 
@@ -27,6 +27,12 @@ sudo apt-get install espeak-ng
 ### Others
 
 If eSpeak NG is not available in your package manager, you may need to compile the binaries for your system. Refer to [this page](https://github.com/espeak-ng/espeak-ng/blob/master/docs/building.md) for more information.
+
+## Installation
+
+### GitHub Releases
+
+You can download the latest release for this library [here](https://github.com/sayak-brm/espeakng-python/releases/latest).
 
 ## Usage
 
