@@ -1,5 +1,4 @@
 #! /usr/bin/python3
-
 # An eSpeak NG TTS binding for Python3.
 # Copyright (C) 2016-2020 Sayak Brahmachari.
 ##
@@ -14,7 +13,6 @@
 ##
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import time
 
 import espeakng
