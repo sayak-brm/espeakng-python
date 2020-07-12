@@ -37,6 +37,8 @@ for more information.
 
 ## PyPi
 
+This library is available on [PyPi](https://pypi.org/project/espeakng/).
+
 ```
 pip install espeakng
 ```
