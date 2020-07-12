@@ -1,5 +1,4 @@
 #! /usr/bin/python3
-
 # An eSpeak NG TTS binding for Python3.
 # Copyright (C) 2016-2020 Sayak Brahmachari.
 ##
@@ -14,10 +13,10 @@
 ##
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
-
 import time
 
 import espeakng
+
 
 def test_espeakng():
     print("Testing espeak4py\n")
@@ -50,7 +49,9 @@ def test_espeakng():
     myFastSpeaker.say("I am a demo of the say function")
 
     print("Testing parameter overrides with say")
-    myFastSpeaker.say("I am a demo of the say function", wait4prev=True, wpm=240)
+    myFastSpeaker.say("I am a demo of the say function",
+                      wait4prev=True,
+                      wpm=240)
     time.sleep(4)
 
     print("Testing voice")
@@ -60,6 +61,6 @@ def test_espeakng():
 
     print("Testing Completed.")
 
+
 if __name__ == "__main__":
     test_espeakng()
-    

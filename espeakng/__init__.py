@@ -23,11 +23,8 @@ class SpeechError(Exception):
 
 class SpeechParameterError(SpeechError):
     def __init__(self, param, val, limits):
-        super().__init__(
-            "Parameter {} is out of range: {} -> ({}-{}).".format(
-                param, val, limits[0], limits[1]
-            )
-        )
+        super().__init__("Parameter {} is out of range: {} -> ({}-{}).".format(
+            param, val, limits[0], limits[1]))
 
 
 class Speaker:
