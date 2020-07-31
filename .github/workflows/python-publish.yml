@@ -30,5 +30,8 @@ jobs:
         python setup.py sdist bdist_wheel
         twine upload dist/*
     - name: Update site
-      run: |
-        curl -XPOST -u "${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/${{ secrets.GH_REPO }}/dispatches --data '{"event_type": "build_application"}'
+      uses: peter-evans/repository-dispatch@v1
+      with:
+        token: ${{ secrets.GH_TOKEN }}
+        repository: sayakbrm/sayak-brm.github.io
+        event-type: update-event
