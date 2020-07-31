@@ -1,0 +1,15 @@
+name: Update Personal site project page
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Update site
+      run: |
+        curl -XPOST -u "${{ secrets.GH_USERNAME }}:${{ secrets.GH_TOKEN }}" -H "Accept: application/vnd.github.everest-preview+json" -H "Content-Type: application/json" https://api.github.com/repos/${{ secrets.GH_REPO }}/dispatches --data '{"event_type": "build_application"}'
