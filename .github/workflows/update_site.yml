@@ -15,5 +15,5 @@ jobs:
       uses: peter-evans/repository-dispatch@v1
       with:
         token: ${{ secrets.GH_TOKEN }}
-        repository: sayakbrm/sayak-brm.github.io
+        repository: sayak-brm/sayak-brm.github.io
         event-type: update-event

@@ -39,7 +39,7 @@ for more information.
 
 This library is available on [PyPi](https://pypi.org/project/espeakng/).
 
-```
+```sh
 pip install espeakng
 ```
 
