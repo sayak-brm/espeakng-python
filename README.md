@@ -107,7 +107,3 @@ Change it by:
 ```python
 mySpeaker.voice = 'es'
 ```
-
-## License
-
-[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsayak-brm%2Fespeakng-python.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsayak-brm%2Fespeakng-python?ref=badge_large)
