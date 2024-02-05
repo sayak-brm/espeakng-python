@@ -108,12 +108,15 @@ Change it by:
 mySpeaker.voice = 'es'
 ```
 
-#### Export to wav file
+#### Export to .WAV file
 
-By default, your text will just be spoken alloud, but if you want it to be written to a wav file, you can specify an `export_path` when calling the `say` function
+By default, your text will just be spoken aloud, but if you want it to be written to a .WAV file, you can specify an `export_path` when calling the `say` function, as seen below:
 
 ```python
 mySpeaker.say("Export this to a file", export_path="test.wav")
 ```
 
-- Special thanks to [FlorianEagox](https://github.com/FlorianEagox) for this feature.
+## Special thanks
+
+- [MickeyDelp](https://github.com/MickeyDelp) for wordgap and amplitude controls, and other helper methods.
+- [FlorianEagox](https://github.com/FlorianEagox) for the export to WAV file feature.
