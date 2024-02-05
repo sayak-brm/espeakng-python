@@ -60,7 +60,11 @@ class Speaker:
                     and kwargs[param] > limits[param][1]):
                 raise SpeechParameterError(param, kwargs[param], limits[param])
 
-    def generate_command(self, phrase, **kwargs):
+    @staticmethod
+    def list_voices():
+        return ["af","sq","am","ar","an","hy","hyw","as","az","ba","cu","eu","be","bn","bpy","bs","bg","my","ca","chr","yue","hak","haw","cmn","hr","cs","da","nl","en-us","en","en-029","en-gb-x-gbclan","en-gb-x-rp","en-gb-scotland","en-gb-x-gbcwmd","eo","et","fa","fa-latn","fi","fr-be","fr","fr-ch","ga","gd","ka","de","grc","el","kl","gn","gu","ht","he","hi","hu","is","id","ia","io","it","ja","kn","kok","ko","ku","kk","ky","la","lb","ltg","lv","lfn","lt","jbo","mi","mk","ms","ml","mt","mr","nci","ne","nb","nog","or","om","pap","py","pl","pt-br","qdb","qu","quc","qya","pt","pa","piqd","ro","ru","ru-lv","uk","sjn","sr","tn","sd","shn","si","sk","sl","smj","es","es-419","sw","sv","ta","th","tk","tt","te","tr","ug","ur","uz","vi-vn-x-central","vi","vi-vn-x-south","cy"]
+
+    def generate_command(self, phrase, export_path="", **kwargs):
         Speaker.validate_parameters(kwargs)
         cmd = [
             self.executable,
@@ -74,13 +78,15 @@ class Speaker:
             kwargs.get("amplitude", self.amplitude),
             "-g",
             kwargs.get("wordgap", self.wordgap),
-            phrase,
         ]
+        if export_path:
+            cmd += ['-w', os.path.join(os.getcwd(), export_path)]
+        cmd.append(phrase)
         cmd = [str(x) for x in cmd]
         return cmd
 
-    def say(self, phrase, wait4prev=False, **kwargs):
-        cmd = self.generate_command(phrase, **kwargs)
+    def say(self, phrase, wait4prev=False, export_path="", **kwargs):
+        cmd = self.generate_command(phrase, export_path, **kwargs)
         if self.prevproc:
             if wait4prev:
                 self.prevproc.wait()
@@ -97,6 +103,7 @@ class Speaker:
             self.prevproc = subprocess.Popen(cmd,
                                              cwd=os.path.dirname(
                                                  os.path.abspath(__file__)))
+        print(cmd)
 
     def is_talking(self):
         if self.prevproc and self.prevproc.poll() == None:
