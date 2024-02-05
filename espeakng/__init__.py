@@ -60,7 +60,7 @@ class Speaker:
                     and kwargs[param] > limits[param][1]):
                 raise SpeechParameterError(param, kwargs[param], limits[param])
 
-    def generate_command(self, phrase, **kwargs):
+    def generate_command(self, phrase, export_path="", **kwargs):
         Speaker.validate_parameters(kwargs)
         cmd = [
             self.executable,
@@ -76,11 +76,13 @@ class Speaker:
             kwargs.get("wordgap", self.wordgap),
             phrase,
         ]
+        if export_path:
+            cmd += ['-w', export_path]
         cmd = [str(x) for x in cmd]
         return cmd
 
-    def say(self, phrase, wait4prev=False, **kwargs):
-        cmd = self.generate_command(phrase, **kwargs)
+    def say(self, phrase, wait4prev=False, export_path="", **kwargs):
+        cmd = self.generate_command(phrase, export_path, **kwargs)
         if self.prevproc:
             if wait4prev:
                 self.prevproc.wait()

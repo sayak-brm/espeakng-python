@@ -59,6 +59,9 @@ def test_espeakng():
     mySpanishSpeaker = espeakng.Speaker(voice="es")
     mySpanishSpeaker.say("Hola. Como estas?")
 
+    print("Testing export")
+    mySpeaker.say("This text will be exported to a wav file", wait4prev=True, export_path="espeak_output.wav")
+
     print("Testing Completed.")
 
 
