@@ -14,6 +14,10 @@ setuptools.setup(
     keywords=["tts", "espeak", "speakng", "espeakng", "speech"],
     url="https://sayak-brm.github.io/espeakng-python/",
     packages=setuptools.find_packages(),
+    extras_require={
+        "loader": ["espeakng-loader>=0.2.4,<0.3"],
+        "test": ["pytest>=7"],
+    },
     classifiers=[
         "Development Status :: 4 - Beta",
         "Intended Audience :: Developers",

@@ -1,6 +1,6 @@
 # eSpeak NG TTS Bindings for Python3
 
-Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under
+Copyright 2016-2026 [Sayak B](https://sayakb.com/). Licenced under
 [GNU GPLv3](https://opensource.org/licenses/GPL-3.0).
 
 [![Python Version](https://img.shields.io/badge/Python-3-brightgreen.svg)](https://www.python.org/download/releases/3.0/)
@@ -10,23 +10,31 @@ Copyright 2016-2020 [Sayak B](https://sayakb.com/). Licenced under
 
 ## Requirements
 
-You need to have eSpeak NG installed in your system and added to the path.
+The default `backend="auto"` uses `espeakng-loader` when it is installed and
+otherwise falls back to the `espeak-ng` command-line program. You can force a
+specific backend with `backend="loader"` or `backend="cli"`.
 
-### Windows
+The loader wheels currently support x86-64 and ARM64 Windows, Linux, and macOS.
+The CLI backend requires the `espeak-ng` program to be installed and available
+on `PATH`.
+
+### CLI backend system requirements
+
+#### Windows
 
 The latest installers for eSpeak NG can be found [here](https://github.com/espeak-ng/espeak-ng/releases/latest).
 
 The installed executable may need to be added to the system path.
 ([See here](https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access/))
 
-### Ubuntu & Debian
+#### Ubuntu & Debian
 
 ```bash
 sudo apt-get update
 sudo apt-get install espeak-ng
 ```
 
-### Others
+#### Others
 
 If eSpeak NG is not available in your package manager, you may need to compile
 the binaries for your system. Refer to
@@ -35,12 +43,33 @@ for more information.
 
 ## Installation
 
-### PyPi
+This library is available on [PyPI](https://pypi.org/project/espeakng/).
 
-This library is available on [PyPi](https://pypi.org/project/espeakng/).
+### Loader backend
+
+Install the package with the loader extra to bundle the eSpeak NG shared
+library and voice data. The default `Speaker()` will select it automatically:
+
+```sh
+pip install "espeakng[loader]"
+```
+
+The loader runs in an isolated child process, so multiple `Speaker` objects do
+not overwrite one another's voice or speech settings.
+
+### CLI backend
+
+Install eSpeak NG using the platform instructions above, then install this
+package without the loader extra:
 
 ```sh
 pip install espeakng
+```
+
+If both backends are installed but you specifically want the CLI backend:
+
+```python
+mySpeaker = espeakng.Speaker(backend="cli")
 ```
 
 ### GitHub Releases
@@ -78,17 +107,17 @@ mySpeaker.say('I am a demo of the say() method.', wait4prev=True)
 
 #### Pitch
 
-By default the pitch is set at 80.
+By default the pitch is set at 50.
 
 Change it by:
 
 ```python
-mySpeaker.pitch = 120
+mySpeaker.pitch = 70
 ```
 
 #### Words per Minute (WPM)
 
-By default WPM is set at 120.
+By default WPM is set at 175.
 
 Change it by:
 
