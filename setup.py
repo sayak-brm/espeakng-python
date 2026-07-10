@@ -5,7 +5,7 @@ with open("README.md", "r") as rm:
 
 setuptools.setup(
     name="espeakng",
-    version="1.0.3",
+    version="1.0.5",
     author="Sayak B",
     author_email="me@sayakb.com",
     description="An eSpeak NG TTS binding for Python3",
@@ -23,6 +23,7 @@ setuptools.setup(
         "Programming Language :: Python :: 3.10",
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.13",
     ],
     python_requires=">=3.9",
 )
