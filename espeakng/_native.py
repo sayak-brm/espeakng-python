@@ -6,8 +6,12 @@ from pathlib import Path
 import wave
 
 
+# The bundled libraries have no audio backend, so audio is always delivered
+# to the synth callback and played (if at all) by AudioPlayer.
 AUDIO_OUTPUT_SYNCHRONOUS = 2
-AUDIO_OUTPUT_SYNCH_PLAYBACK = 3
+
+# Without this flag a failed espeak_Initialize calls exit(1) inside the C library.
+ESPEAK_INITIALIZE_DONT_EXIT = 0x8000
 
 EE_OK = 0
 ESPEAK_CHARS_UTF8 = 1
@@ -96,27 +100,24 @@ def _load_library():
     return library, os.fsencode(str(data_path.parent))
 
 
-def synthesize(phrase, voice, wpm, pitch, amplitude, wordgap, export_path=None):
-    """Synthesize one utterance, optionally streaming it to a WAV file."""
+def synthesize(phrase, voice, wpm, pitch, amplitude, wordgap, wav_output):
+    """Synthesize one utterance as WAV into a file path or binary file object."""
     library, data_parent = _load_library()
-    output = (
-        AUDIO_OUTPUT_SYNCHRONOUS
-        if export_path
-        else AUDIO_OUTPUT_SYNCH_PLAYBACK
+    sample_rate = library.espeak_Initialize(
+        AUDIO_OUTPUT_SYNCHRONOUS, 0, data_parent, ESPEAK_INITIALIZE_DONT_EXIT
     )
-    sample_rate = library.espeak_Initialize(output, 0, data_parent, 0)
-    if sample_rate < 0:
+    # A failed initialization returns 0 rather than a negative code.
+    if sample_rate <= 0:
         raise NativeSpeechError("Unable to initialize eSpeak NG")
 
     wav_file = None
     callback_error = []
 
     try:
-        if export_path:
-            wav_file = wave.open(export_path, "wb")
-            wav_file.setnchannels(1)
-            wav_file.setsampwidth(ctypes.sizeof(ctypes.c_short))
-            wav_file.setframerate(sample_rate)
+        wav_file = wave.open(wav_output, "wb")
+        wav_file.setnchannels(1)
+        wav_file.setsampwidth(ctypes.sizeof(ctypes.c_short))
+        wav_file.setframerate(sample_rate)
 
         def on_audio(samples, sample_count, _events):
             if not wav_file or not samples or sample_count <= 0:

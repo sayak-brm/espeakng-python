@@ -11,12 +11,34 @@ Copyright 2016-2026 [Sayak B](https://sayakb.com/). Licenced under
 ## Requirements
 
 The default `backend="auto"` uses `espeakng-loader` when it is installed and
-otherwise falls back to the `espeak-ng` command-line program. You can force a
-specific backend with `backend="loader"` or `backend="cli"`.
+can serve the request, and otherwise falls back to the `espeak-ng`
+command-line program. You can force a specific backend with `backend="loader"`
+or `backend="cli"`.
 
 The loader wheels currently support x86-64 and ARM64 Windows, Linux, and macOS.
 The CLI backend requires the `espeak-ng` program to be installed and available
 on `PATH`.
+
+### Loader backend playback requirements
+
+The bundled eSpeak NG library has no audio output of its own, so the loader
+backend synthesizes a WAV file and plays it with a player that ships with the
+operating system:
+
+| Platform | Player                                                    |
+|----------|-----------------------------------------------------------|
+| Windows  | built in (`winsound`), nothing to install                 |
+| macOS    | `afplay`, installed with macOS                            |
+| Linux    | the first of `pw-play`, `paplay` or `aplay` found on `PATH` |
+
+Desktop Linux systems normally have one of these; on a minimal system install
+`pipewire-bin`, `pulseaudio-utils` or `alsa-utils`. Exporting with
+`export_path` never needs a player.
+
+When no player is found, `backend="auto"` uses the CLI backend for playback,
+and `backend="loader"` raises `SpeechError`. The loader backend is not
+available in frozen applications (for example PyInstaller builds); `auto`
+uses the CLI backend there.
 
 ### CLI backend system requirements
 
